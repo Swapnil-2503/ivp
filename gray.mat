@@ -1,5 +1,5 @@
 clc; 
-close all:
+close all;
 clear all;
 
 I= imread('cameraman.tif');
@@ -10,7 +10,7 @@ imshow(I);
 
 title('Original Image');
 
-J-255-1;
+J=255-I;
  subplot(2,2,2);
 
 imshow(J);
@@ -25,16 +25,17 @@ I=double(I);
 
 k=C.*((I).^Gamma);
 
-K=uint8(K); subplot(2,2,[34]); 
-imshow(K);
+k=uint8(k);
+subplot(2,2,[3,4]); 
+imshow(k);
 
 title('Gamma Transformation for \gamma= 0.75');
 
-I= uint8(1);
+I= uint8(I);
 
-X == imadjust(1,[100/255; 200/255],[0/255; 255/255]); %
+X = imadjust(I,[100/255; 200/255],[0/255; 255/255]);
 
-X == imadjust(I,[low_in; high_in], [low_out; high_out])
+%X = imadjust(I,[low_in; high_in], [low_out; high_out])
 figure(2);
 subplot(2,2,1);
 imshow(I);
@@ -46,7 +47,7 @@ imshow(X);
 title('Contrast Streching Output for range 100 to 200');
 
 subplot(2,2,3);
-imhist(1);
+imhist(I);
 
 title('Histogram of Original Image');
 
