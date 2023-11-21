@@ -1,0 +1,60 @@
+clc;
+close all;
+clear all;
+
+I = imread('cameraman.jpg');
+
+figure(1);
+subplot(2,2,1);
+imshow(I);
+title('Original Image');
+
+% Standard Average Smoothing
+H = (1/9) * ones(3);
+I1 = imfilter(I, H, 'replicate');
+subplot(2,2,2);
+imshow(I1);
+title('Standard Average Smoothing Output');
+
+% Weighted Average Smoothing
+H = (1/16) * [1 2 1; 2 4 2; 1 2 1];
+I2 = imfilter(I, H, 'replicate');
+subplot(2,2,3);
+imshow(I2);
+title('Weighted Average Smoothing Output');
+
+% Blurring with a disk filter
+H = fspecial('disk', 5);
+I3 = imfilter(I, H, 'replicate');
+subplot(2,2,4);
+imshow(I3);
+title('Blurred Image');
+
+figure(2);
+subplot(2,2,1);
+imshow(I);
+title('Original Image');
+
+% Laplacian Filter
+H = [-1 -1 -1; -1 8 -1; -1 -1 -1];
+P = imfilter(I, H, 'replicate');
+subplot(2,2,2);
+imshow(P);
+title('Output by Laplacian Filter');
+
+% Sharpening Image by adding Laplacian result
+K = imadd(I, P);
+subplot(2,2,3);
+imshow(K);
+title('Sharpened Image by Adding Laplacian');
+
+% Sharpening Image by Unsharp Filter
+H = fspecial('unsharp');
+sharpened = imfilter(I, H, 'replicate');
+subplot(2,2,4);
+imshow(sharpened);
+title('Sharpened Image by Unsharp Filter');
+
+
+
+

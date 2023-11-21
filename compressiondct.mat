@@ -1,0 +1,24 @@
+
+clc;
+clear all;
+close all;
+
+I = imread('cameraman.jpg');
+I_gray = rgb2gray(I);
+
+figure;
+
+subplot(1,3,1);
+imshow(I_gray);
+title('Grayscale Image');
+
+C = dct2(I_gray);
+subplot(1,3,2);
+imshow(log(abs(C)), []);
+title('DCT of Grayscale Image');
+
+O = idct2(C);
+O = uint8(O);
+subplot(1,3,3);
+imshow(O);
+title('IDCT of DCT Image');

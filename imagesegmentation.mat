@@ -1,0 +1,45 @@
+
+clc;
+clear all;
+close all;
+
+I = imread('flower.tif.png');
+
+figure(1);
+
+subplot(2,2,1);
+imshow(I);
+title('Original Image');
+
+% Manual Thresholding (User Defined Algorithm)
+[R, C] = size(I);
+J = zeros(R, C, 'uint8');
+th = 100;
+
+for x = 1:R
+    for y = 1:C
+        if I(x, y) >= th
+            J(x, y) = 255;
+        end
+    end
+end
+
+J_manual = logical(J);
+subplot(2,2,2);
+imshow(J_manual);
+title('Manual Thresholding (User Defined Algorithm)');
+
+% Manual Thresholding (by Function)
+K = im2bw(I, th/255);
+subplot(2,2,3);
+imshow(K);
+title('Manual Thresholding (by Function)');
+
+% Automated Thresholding by Otsu's Method
+th_otsu = graythresh(I);
+L = im2bw(I, th_otsu);
+subplot(2,2,4);
+imshow(L);
+title('Automated Thresholding (Otsu Method)');
+
+

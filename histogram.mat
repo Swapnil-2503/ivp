@@ -1,0 +1,28 @@
+
+clc;
+close all;
+clear all;
+
+I = imread('cameraman.tif');
+
+figure(1);
+subplot(2,2,1);
+imshow(1);
+
+title('Original Image');
+
+subplot(2,2,2);
+imhist(1);
+
+title('Histogram of Original Image');
+
+J = histeq(I);
+subplot(2,2,3);
+
+imshow(J); title('Histogram Equalization'); subplot(2,2,4); imhist(J); title('Histogram of Equalized Output');
+K = histeq(J); L = histeq(K); figure(2); subplot(2,2,1); imshow(K); title('Equalization Iteration 2'); subplot(2,2,2); imhist(K);
+title('Histogram of Equalization Iteration 2'); subplot(2,2,3);
+imshow(L);
+
+title('Equalization Iteration 3'); subplot(2,2,4); imhist(L); title('Histogram of Equalization Iteration 3');
+

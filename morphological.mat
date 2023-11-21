@@ -1,0 +1,49 @@
+
+clc;
+close all;
+clear all;
+
+% For Grayscale Image
+bw = imread('full_path_to_your_image_folder/carl.tif'); % Load the grayscale image
+figure(1);
+
+subplot(2,3,1);
+imshow(bw);
+title('Original Image');
+
+% Defining Structure Element
+se = strel('square',3); % Create a square structuring element of size 3
+
+%Dilation
+bw2 = imdilate(bw, se);
+subplot(2,3,2);
+imshow(bw2);
+title('Dilated');
+
+%Erosion
+bw3 = imerode(bw, se);
+subplot(2,3,3);
+imshow(bw3);
+title('Eroded');
+
+%Opening
+bw4 = imopen(bw, se);
+subplot(2,3,4);
+imshow(bw4);
+title('Opened');
+
+%Closing
+bw5 = imclose(bw, se);
+subplot(2,3,5);
+imshow(bw5);
+title('Closed');
+
+%Edge Extraction
+bw6 = bw - bw3;
+subplot(2,3,6);
+imshow(bw6);
+title('Edge Extraction');
+
+
+
+
