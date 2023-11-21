@@ -2,7 +2,7 @@ a=imread("cameraman.jpg");
 b=fft2(a);
 f1=abs(b);
 f2=log(f1);
-f3=log(abs(fftshift(f)));
+f3=log(abs(fftshift(f1)));
 
 imtool(f1,[]);
 imtool(f2,[]);
